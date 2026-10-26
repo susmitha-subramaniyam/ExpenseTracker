@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pennywise | Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="header">
+    <h2>💰 Pennywise</h2>
+    <span id="today"></span>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <p>PERSONAL FINANCE DASHBOARD</p>
+        <h1>Manage your money <span>better.</span></h1>
+        <p>Track your income, expenses and savings in one place.</p>
+    </section>
+
+    <section class="summary">
+
+        <div class="summary-card balance-card">
+            <p>Total Balance</p>
+            <h2 id="balance">₹0.00</h2>
+        </div>
+
+        <div class="summary-card">
+            <p>Total Income</p>
+            <h2 class="green" id="income">₹0.00</h2>
+        </div>
+
+        <div class="summary-card">
+            <p>Total Expenses</p>
+            <h2 class="red" id="expense">₹0.00</h2>
+        </div>
+
+    </section>
+
+    <section class="main-grid">
+
+        <div class="panel">
+            <h2>Add Transaction</h2>
+
+            <form id="transactionForm">
+
+                <label for="title">Transaction Name</label>
+                <input type="text" id="title"
+                       placeholder="Example: Salary" required>
+
+                <label for="amount">Amount (₹)</label>
+                <input type="number" id="amount"
+                       placeholder="Enter amount"
+                       min="0.01" step="0.01" required>
+
+                <label for="type">Transaction Type</label>
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <label for="category">Category</label>
+                <select id="category">
+                    <option>Food</option>
+                    <option>Shopping</option>
+                    <option>Travel</option>
+                    <option>Bills</option>
+                    <option>Salary</option>
+                    <option>Health</option>
+                    <option>Education</option>
+                    <option>Entertainment</option>
+                    <option>Other</option>
+                </select>
+
+                <label for="date">Date</label>
+                <input type="date" id="date" required>
+
+                <label for="note">Note (Optional)</label>
+                <input type="text" id="note"
+                       placeholder="Add a short note">
+
+                <button type="submit" class="add-btn">
+                    + Add Transaction
+                </button>
+
+                <p id="message"></p>
+
+            </form>
+        </div>
+
+        <div class="panel chart-panel">
+            <h2>Expense Overview</h2>
+            <p class="muted">Spending by category</p>
+            <div class="chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+            <p id="chartMessage" class="muted"></p>
+        </div>
+
+    </section>
+
+    <section class="panel history-panel">
+
+        <div class="history-heading">
+            <div>
+                <h2>Transaction History</h2>
+                <p class="muted" id="count">0 transactions</p>
+            </div>
+            <button id="exportBtn" class="export-btn" type="button">
+                Export CSV ↓
+            </button>
+        </div>
+
+        <div class="filters">
+            <input type="search" id="search"
+                   placeholder="Search transactions...">
+
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option>Food</option>
+                <option>Shopping</option>
+                <option>Travel</option>
+                <option>Bills</option>
+                <option>Salary</option>
+                <option>Health</option>
+                <option>Education</option>
+                <option>Entertainment</option>
+                <option>Other</option>
+            </select>
+
+            <button id="clearFilters" class="clear-btn" type="button">
+                Clear
+            </button>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>TRANSACTION</th>
+                        <th>CATEGORY</th>
+                        <th>DATE</th>
+                        <th>TYPE</th>
+                        <th>AMOUNT</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody id="history"></tbody>
+            </table>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+            <div>🧾</div>
+            <h3>No transactions found</h3>
+            <p>Add a transaction or change your filters.</p>
+        </div>
+
+    </section>
+
+    <p class="privacy-note">
+        🔒 Your data is saved in this browser using localStorage.
+    </p>
+
+</main>
+
+<footer>
+    Pennywise Expense Tracker · Build better money habits
+</footer>
+
+</body>
+</html>
